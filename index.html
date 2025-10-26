@@ -156,5 +156,85 @@
             document.head.appendChild(style);
         });
     </script>
+
+        <!-- Модальное окно для изображений -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img class="modal-image" id="modalImage">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Функция для открытия модального окна с изображением
+        function openImageModal(imgSrc, altText) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('modalCaption');
+            
+            modal.style.display = 'block';
+            modalImg.src = imgSrc;
+            caption.textContent = altText;
+            
+            // Блокировка прокрутки body
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Функция для закрытия модального окна
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Добавляем обработчики кликов на изображения
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.item-image img');
+            
+            images.forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    openImageModal(this.src, this.alt);
+                });
+            });
+
+            // Закрытие модального окна
+            const modal = document.getElementById('imageModal');
+            const closeBtn = document.querySelector('.close-modal');
+            
+            closeBtn.addEventListener('click', closeImageModal);
+            
+            // Закрытие при клике вне изображения
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeImageModal();
+                }
+            });
+
+            // Закрытие по клавише Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                }
+            });
+        });
+
+        // Обработка изменения ориентации экрана
+        window.addEventListener('orientationchange', function() {
+            const modal = document.getElementById('imageModal');
+            if (modal.style.display === 'block') {
+                // Переоткрываем модальное окно для корректного позиционирования
+                const modalImg = document.getElementById('modalImage');
+                const caption = document.getElementById('modalCaption');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    setTimeout(() => {
+                        modal.style.display = 'block';
+                    }, 50);
+                }, 300);
+            }
+        });
+    </script>
 </body>
 </html>
