@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Toys - Yumshoq O'yinchoqlar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🥰 Yumshoq O'yinchoqlar</h1>
+            <p>Bolalaringiz uchun eng sifatli va xavfsiz o'yinchoqlar</p>
+        </header>
+
+        <!-- Gallery -->
+        <div class="gallery">
+            <!-- Ayiq -->
+            <div class="item">
+                <div class="item-image">
+                    <img src="bear.jpg" alt="Yumshoq Ayiqcha">
+                    <div class="item-badge">Yangi</div>
+                </div>
+                <div class="item-content">
+                    <div class="price">
+                        Ayiq - 80.000 so'm
+                        <span class="price-old">100.000 so'm</span>
+                    </div>
+                    <p class="description">Jigarrang mo'ynali super yumshoq ayiqcha. 3 va undan katta yoshdagі bolalar uchun juda mos. Bolalaringizni xursand qiladigan ajoyib sovg'a.</p>
+                    <ul class="features">
+                        <li>Material: 100% paxta</li>
+                        <li>Balandligi: 50 sm</li>
+                        <li>Yosh chegarasi: 3+</li>
+                        <li>Mashinada yuvish mumkin</li>
+                        <li>Eko-teri</li>
+                    </ul>
+                    <button class="btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        Sotib olish
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quyon -->
+            <div class="item">
+                <div class="item-image">
+                    <img src="zaychik.jpg" alt="Yumshoq Quyoncha">
+                    <div class="item-badge">Yangi</div>
+                </div>
+                <div class="item-content">
+                    <div class="price">
+                        Quyon - 80.000 so'm
+                        <span class="price-old">95.000 so'm</span>
+                    </div>
+                    <p class="description">Jigarrang mo'ynali super yumshoq quyoncha. 3 va undan katta yoshdagі bolalar uchun juda mos. Sevimli o'yinchoq bo'lishiga ishonamiz.</p>
+                    <ul class="features">
+                        <li>Material: 100% paxta</li>
+                        <li>Balandligi: 50 sm</li>
+                        <li>Yosh chegarasi: 3+</li>
+                        <li>Mashinada yuvish mumkin</li>
+                        <li>Eko-teri</li>
+                    </ul>
+                    <button class="btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        Sotib olish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact">
+            <h2>Bog'lanish</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+998 95 133 88 24</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@softtoys.uz</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Toshkent shahri</span>
+                </div>
+            </div>
+            <a href="https://t.me/ib_sss" class="telegram-btn">
+                <i class="fab fa-telegram"></i>
+                Telegram orqali bog'lanish
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Sweet Toys. Barcha huquqlar himoyalangan. | Bolalar uchun eng yaxshi o'yinchoqlar</p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript для интерактивности
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработка кнопок покупки
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const item = this.closest('.item');
+                    const title = item.querySelector('.price').textContent.split('-')[0].trim();
+                    
+                    // Создаем красивое уведомление
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: linear-gradient(135deg, #27ae60, #2ecc71);
+                        color: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                        z-index: 1000;
+                        animation: slideIn 0.5s ease;
+                    `;
+                    notification.innerHTML = `
+                        <strong>Rahmat! 🎉</strong><br>
+                        Siz "${title}" ni tanladingiz.<br>
+                        Tez orada operator bog'lanadi.
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Удаляем уведомление через 3 секунды
+                    setTimeout(() => {
+                        notification.style.animation = 'slideOut 0.5s ease';
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 500);
+                    }, 3000);
+                });
+            });
+
+            // Добавляем стили для анимаций
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
