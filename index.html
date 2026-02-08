@@ -17,25 +17,35 @@
     <div class="catalog">
 
         <div class="product-card">
-            <div class="image-box">
-                <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)" alt="Игрушка от Sweet Toys">
-                <div class="thumbnails">
-                    <img src="photosss/toy1/toy1_1.jpg" onclick="changeImg(this)">
-                    <img src="photosss/toy1/toy1_2.jpg" onclick="changeImg(this)">
-                    <img src="photosss/toy1/toy1_3.jpg" onclick="changeImg(this)">
-                    <img src="photosss/toy1/toy1_4.jpg" onclick="changeImg(this)">
-                    <img src="photosss/toy1/toy1_5.jpg" onclick="changeImg(this)">
-                </div>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Название игрушки</h3>
-                <p class="product-desc">Здесь описание товара. Обязательно укажите, почему Sweet Toys — это лучший выбор.</p>
-                <div class="price">120 000 сум</div>
-                <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">Заказать в Telegram</a>
-            </div>
+    <div class="image-box">
+        <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)" alt="Игрушка">
+        <div class="thumbnails">
+            <img src="photosss/toy1/toy1_1.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy1/toy1_2.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy1/toy1_3.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy1/toy1_4.jpg" onclick="changeImg(this)">
+        </div>
+    </div>
+
+    <div class="product-info">
+        <h3 class="product-title">Gonchik moshina</h3>
+        
+        <ul class="product-features">
+            <li><span>Yosh:</span> 3 yoshdan kattalar uchun</li>
+            <li><span>Ranglari:</span> har xil</li>
+            <li><span>Material:</span> Xavfsiz plastik</li>
+            <li><span>Og'irligi:</span> 50 gram</li>
+        </ul>
+
+        <div class="quantity-selector">
+            <label for="q1">Soni:</label>
+            <input type="number" id="q1" value="1" min="1" oninput="updatePrice(this, 120000)">
         </div>
 
-        </div>
+        <div class="price"><span class="total-price">120 000</span> сум</div>
+        
+        <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">Zakazat v Telegram</a>
+    </div>
 </div>
 
 <footer>
