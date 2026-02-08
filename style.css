@@ -83,10 +83,123 @@ header {
 .buy-btn:hover { background-color: var(--dark-green); }
 
 /* ФУТЕР */
-footer { background: #fff; padding: 40px 20px; margin-top: 60px; text-align: center; border-top: 1px solid #eee; }
-.footer-contacts { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
-.contact-link { text-decoration: none; color: #333; font-weight: 600; padding: 10px 20px; border: 2px solid var(--main-green); border-radius: 30px; transition: 0.3s; }
-.contact-link:hover { background: var(--main-green); color: #fff; }
+footer { /* КРАСИВЫЙ ФУТЕР */
+footer {
+    background-color: #ffffff;
+    padding: 60px 20px 20px;
+    margin-top: 80px;
+    border-top: 1px solid #eee;
+    color: #333;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: left;
+}
+
+.footer-brand {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--main-green);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.footer-brand p {
+    color: #777;
+    font-size: 0.95rem;
+    max-width: 300px;
+}
+
+.footer-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-info h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--main-green);
+}
+
+.footer-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-item {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.footer-item:hover {
+    color: var(--main-green);
+    transform: translateX(5px);
+}
+
+.footer-item .icon {
+    font-size: 1.2rem;
+    background: #f0fdf4;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-brand p {
+        margin: 0 auto;
+    }
+    .footer-info h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-item {
+        justify-content: center;
+    }
+ }
 
 /* МОДАЛКА */
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
