@@ -2,122 +2,103 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sweet Toys — Online Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Toys — Магазин оригинальных игрушек</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
     <div class="logo">Sweet Toys</div>
+    <p class="tagline">Магазин самых уютных игрушек в Узбекистане</p>
 </header>
 
 <div class="container">
     <div class="catalog">
-        <div class="product-card" onclick="openProduct('toy1', 'Gonchik moshina', 1000, ['3 yoshdan kattalar uchun', 'Material: Xavfsiz plastik', 'Og\'irligi: 50gram'], 5)">
-            <div class="image-box">
-                <img src="photosss/toy1/toy1_1.jpg" alt="Toy">
-            </div>
-            <div class="product-info-short">
-                <div class="price">1 000 сум</div>
-                <h3 class="product-title">Gonchik moshina</h3>
-            </div>
-        </div>
 
-        <div class="product-card" onclick="openProduct('toy2', 'Mishka Teddy', 1000, ['Yumshoq material', 'Ranglari: jigarrang'], 3)">
+        <div class="product-card">
             <div class="image-box">
-                <img src="photosss/toy2/toy2_1.jpg" alt="Toy">
+                <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)" alt="Игрушка">
+                <div class="thumbnails">
+                    <img src="photosss/toy1/toy1_1.jpg" onclick="changeImg(this)">
+                    <img src="photosss/toy1/toy1_2.jpg" onclick="changeImg(this)">
+                    <img src="photosss/toy1/toy1_3.jpg" onclick="changeImg(this)">
+                    <img src="photosss/toy1/toy1_4.jpg" onclick="changeImg(this)">
+                </div>
             </div>
-            <div class="product-info-short">
-                <div class="price">1 000 сум</div>
-                <h3 class="product-title">Mishka Teddy</h3>
+            <div class="product-info">
+                <h3 class="product-title">Gonchik moshina</h3>
+                
+                <ul class="product-features">
+                    <li><span>Yosh:</span> 3 yoshdan kattalar uchun</li>
+                    <li><span>Ranglari:</span> har xil</li>
+                    <li><span>Material:</span> Xavfsiz plastik</li>
+                    <li><span>Og'irligi:</span> 50 gram</li>
+                </ul>
+
+                <div class="qty-control">
+                    <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
+                    <span class="qty-val">1</span>
+                    <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
+                </div>
+
+                <div class="price"><span class="total-price">1 000</span> сум</div>
+                
+                <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">Zakazat v Telegram</a>
             </div>
         </div>
-    </div>
+        </div>
 </div>
 
-<div id="productModal" class="modal-full">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeProduct()">&times;</span>
-        
-        <div class="modal-body">
-            <img id="modal-main-img" src="" alt="Main View">
-            
-            <div id="modal-thumbnails" class="modal-thumbnails"></div>
-
-            <h2 id="modal-title"></h2>
-            
-            <ul id="modal-features" class="product-features"></ul>
-            
-            <div class="qty-container">
-                <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                <span id="modal-qty">1</span>
-                <button class="qty-btn" onclick="changeQty(1)">+</button>
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">Sweet Toys</div>
+            <p>Ваш надежный магазин мягких радостей в Узбекистане.</p>
+        </div>
+        <div class="footer-info">
+            <h4>Связаться с нами</h4>
+            <div class="footer-socials">
+                <a href="https://t.me/sweet_toys_uz" target="_blank" class="footer-item">✈️ @sweet_toys_uz</a>
+                <a href="tel:+998909088824" class="footer-item">📞 +998 90 908-88-24</a>
             </div>
-            
-            <div class="modal-price"><span id="modal-total">1 000</span> сум</div>
-            <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">Sotib olish (Telegram)</a>
         </div>
     </div>
+</footer>
+
+<div id="myModal" class="modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="imgFull">
 </div>
 
 <script>
-    let currentUnitPrice = 0;
-
-    function openProduct(folder, title, price, features, imgCount) {
-        currentUnitPrice = price;
-        
-        // Установка заголовка и цены
-        document.getElementById('modal-title').innerText = title;
-        document.getElementById('modal-qty').innerText = '1';
-        document.getElementById('modal-total').innerText = price.toLocaleString('ru-RU');
-        
-        // Установка главного фото
-        const mainImg = document.getElementById('modal-main-img');
-        mainImg.src = `photosss/${folder}/${folder}_1.jpg`;
-
-        // Генерация миниатюр (листалка фото)
-        const thumbContainer = document.getElementById('modal-thumbnails');
-        thumbContainer.innerHTML = '';
-        for (let i = 1; i <= imgCount; i++) {
-            let img = document.createElement('img');
-            img.src = `photosss/${folder}/${folder}_${i}.jpg`;
-            img.onclick = function() { mainImg.src = this.src; };
-            thumbContainer.appendChild(img);
-        }
-
-        // Генерация характеристик
-        const featList = document.getElementById('modal-features');
-        featList.innerHTML = '';
-        features.forEach(text => {
-            let li = document.createElement('li');
-            li.innerText = text;
-            featList.appendChild(li);
-        });
-
-        document.getElementById('productModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    function changeImg(smallImg) {
+        const fullImg = smallImg.parentElement.parentElement.querySelector(".main-img");
+        fullImg.src = smallImg.src;
     }
 
-    function closeProduct() {
-        document.getElementById('productModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
+    function openModal(src) {
+        document.getElementById("myModal").style.display = "flex";
+        document.getElementById("imgFull").src = src;
     }
 
-    function changeQty(delta) {
-        const qtySpan = document.getElementById('modal-qty');
-        let qty = parseInt(qtySpan.innerText) + delta;
-        if (qty < 1) qty = 1;
-        qtySpan.innerText = qty;
-        
-        const total = qty * currentUnitPrice;
-        document.getElementById('modal-total').innerText = total.toLocaleString('ru-RU');
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
     }
 
-    // Закрытие при клике по фону
+    function updateQty(btn, change, unitPrice) {
+        const qtySpan = btn.parentElement.querySelector('.qty-val');
+        const priceSpan = btn.closest('.product-info').querySelector('.total-price');
+        let currentQty = parseInt(qtySpan.innerText);
+        currentQty += change;
+        if (currentQty < 1) currentQty = 1;
+        qtySpan.innerText = currentQty;
+        let total = currentQty * unitPrice;
+        priceSpan.innerText = total.toLocaleString('ru-RU').replace(',', ' ');
+    }
+
     window.onclick = function(event) {
-        const modal = document.getElementById('productModal');
-        if (event.target == modal) closeProduct();
+        if (event.target == document.getElementById("myModal")) { closeModal(); }
     }
 </script>
 
