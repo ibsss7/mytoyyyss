@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uzum Toy Store</title>
+    <title>Sweet Toys — Магазин оригинальных игрушек</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>🧸 Market Toys</h1>
+    <div class="logo">Sweet Toys</div>
+    <p class="tagline">Магазин самых уютных игрушек в Узбекистане</p>
 </header>
 
 <div class="container">
@@ -17,7 +18,7 @@
 
         <div class="product-card">
             <div class="image-box">
-                <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)" alt="Главное">
+                <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)" alt="Игрушка от Sweet Toys">
                 <div class="thumbnails">
                     <img src="photosss/toy1/toy1_1.jpg" onclick="changeImg(this)">
                     <img src="photosss/toy1/toy1_2.jpg" onclick="changeImg(this)">
@@ -27,14 +28,24 @@
                 </div>
             </div>
             <div class="product-info">
-                <h3 class="product-title">Мягкий Мишка</h3>
-                <p class="product-desc">Премиальное качество, гипоаллергенный наполнитель.</p>
-                <div class="price">150 000 сум</div>
-                <a href="https://wa.me/номер" class="buy-btn">В корзину</a>
+                <h3 class="product-title">Название игрушки</h3>
+                <p class="product-desc">Здесь описание товара. Обязательно укажите, почему Sweet Toys — это лучший выбор.</p>
+                <div class="price">120 000 сум</div>
+                <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">Заказать в Telegram</a>
             </div>
         </div>
+
         </div>
 </div>
+
+<footer>
+    <h3>Sweet Toys</h3>
+    <div class="footer-contacts">
+        <a href="https://t.me/sweet_toys_uz" class="contact-link" target="_blank">✈️ @sweet_toys_uz</a>
+        <a href="tel:+998909088824" class="contact-link">📞 +998 90 908-88-24</a>
+    </div>
+    <p style="margin-top: 20px; color: #999; font-size: 0.8rem;">© 2026 Sweet Toys. Качество и радость в каждом заказе.</p>
+</footer>
 
 <div id="myModal" class="modal">
     <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -42,21 +53,19 @@
 </div>
 
 <script>
-    // Функция смены главного фото в карточке
     function changeImg(smallImg) {
-        // Находим главную картинку ИМЕННО в этой карточке
         const fullImg = smallImg.parentElement.parentElement.querySelector(".main-img");
         fullImg.src = smallImg.src;
     }
-
-    // Функция открытия фото на весь экран
     function openModal(src) {
         document.getElementById("myModal").style.display = "flex";
         document.getElementById("imgFull").src = src;
     }
-
     function closeModal() {
         document.getElementById("myModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) { closeModal(); }
     }
 </script>
 
