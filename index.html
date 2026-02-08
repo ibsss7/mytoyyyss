@@ -58,8 +58,7 @@
                         <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
                     </div>
                     <div class="price"><span class="total-price">1 000</span> сум</div>
-                    <a href="https://t.me/..." class="buy-btn">V korzinu</a>
-<button class="buy-btn cart-btn" onclick="addToCart('Gonchik moshina', 1000, this)">V korzinu</button>
+        <button class="buy-btn cart-btn" onclick="addToCart('Gonchik moshina', 1000, this)">V korzinu</button>
                 </div>
             </div>
         </div>
@@ -76,7 +75,7 @@
                 </ul>
 
                 <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
-
+    
                 <div class="qty-box" style="display: none;">
                     <div class="qty-control">
                         <button class="qty-btn" onclick="updateQty(this, -1, 5000)">−</button>
@@ -84,7 +83,7 @@
                         <button class="qty-btn" onclick="updateQty(this, 1, 5000)">+</button>
                     </div>
                     <div class="price"><span class="total-price">5 000</span> сум</div>
-                    <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn cart-btn">V korzinu</a>
+                    <button class="buy-btn cart-btn" onclick="addToCart('Mishka Teddy', 1000, this)">V korzinu</button>
                 </div>
             </div>
         </div>
@@ -132,71 +131,111 @@
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal")) closeModal();
     }
-    let cart = [];
-    
+   // Глобальный массив для хранения товаров
+let cart = [];
+
+// 1. Показать выбор количества
+function showQty(btn) {
+    btn.style.display = 'none';
+    btn.parentElement.querySelector('.qty-box').style.display = 'block';
+}
+
+// 2. Универсальный калькулятор цены (+ / -)
 function updateQty(btn, change, unitPrice) {
     const info = btn.closest('.product-info');
     const qtySpan = info.querySelector('.qty-val');
     const priceSpan = info.querySelector('.total-price');
+    
     let qty = parseInt(qtySpan.innerText) + change;
-    if (qty < 1) qty = 1;
+    if (qty < 1) qty = 1; // Минимум 1 штука
+    
     qtySpan.innerText = qty;
     priceSpan.innerText = (qty * unitPrice).toLocaleString('ru-RU').replace(',', ' ');
 }
 
-// ФУНКЦИЯ ДОБАВЛЕНИЯ В КОРЗИНУ
-function addToCart(title, unitPrice, element) {
-    const info = element.closest('.product-info');
-    const qty = parseInt(info.querySelector('.qty-val').innerText);
-    
-    const item = { title, price: unitPrice, qty: qty };
-    cart.push(item);
-    
-    updateCartDisplay();
-    alert('Savatchaga qo\'shildi!');
-}
-
-function updateCartDisplay() {
-    const container = document.getElementById('cart-items');
-    const countSpan = document.getElementById('cart-count');
-    const totalSpan = document.getElementById('total-sum');
-    
-    countSpan.innerText = cart.length;
-    container.innerHTML = '';
-    
-    let totalSum = 0;
-    cart.forEach((item, index) => {
-        totalSum += item.price * item.qty;
-        container.innerHTML += `
-            <div class="cart-item">
-                <span>${item.title} (${item.qty} шт)</span>
-                <b>${(item.price * item.qty).toLocaleString()} сум</b>
-            </div>
-        `;
-    });
-    totalSpan.innerText = totalSum.toLocaleString();
-}
-
+// 3. Открытие и закрытие боковой панели корзины
 function toggleCart() {
     const modal = document.getElementById('cart-modal');
     modal.classList.toggle('active');
 }
 
-// ОТПРАВКА ВСЕГО ЗАКАЗА В ТЕЛЕГРАМ
-function sendOrder() {
-    if (cart.length === 0) return alert('Savatcha bo\'sh!');
+// 4. Добавление товара в корзину
+function addToCart(title, unitPrice, btn) {
+    const info = btn.closest('.product-info');
+    const qty = parseInt(info.querySelector('.qty-val').innerText);
     
-    let message = "Yangi Buyurtma!\n\n";
+    // Проверяем, есть ли такой товар уже в корзине
+    let existingItem = cart.find(item => item.title === title);
+    
+    if (existingItem) {
+        existingItem.qty += qty;
+    } else {
+        cart.push({ title: title, price: unitPrice, qty: qty });
+    }
+    
+    updateCartDisplay();
+    alert(title + " savatchaga qo'shildi!");
+}
+
+// 5. Обновление визуального списка в корзине
+function updateCartDisplay() {
+    const container = document.getElementById('cart-items');
+    const countSpan = document.getElementById('cart-count');
+    const totalSpan = document.getElementById('total-sum');
+    
+    countSpan.innerText = cart.length; // Обновляем число на иконке
+    container.innerHTML = '';
+    
+    let totalSum = 0;
+    
+    if (cart.length === 0) {
+        container.innerHTML = '<p style="padding: 20px; color: #999; text-align:center;">Savatcha bo\'sh...</p>';
+    } else {
+        cart.forEach((item, index) => {
+            totalSum += item.price * item.qty;
+            container.innerHTML += `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #eee; font-size:14px;">
+                    <div style="max-width: 60%;">
+                        <b>${item.title}</b><br>
+                        <small>${item.qty} шт. x ${item.price.toLocaleString()} сум</small>
+                    </div>
+                    <div style="text-align:right;">
+                        <b>${(item.price * item.qty).toLocaleString()} сум</b>
+                    </div>
+                </div>
+            `;
+        });
+    }
+    
+    totalSpan.innerText = totalSum.toLocaleString('ru-RU').replace(',', ' ');
+}
+
+// 6. Формирование сообщения и отправка в Telegram
+function sendOrder() {
+    if (cart.length === 0) return alert("Savatcha bo'sh! Oldin mahsulot qo'shing.");
+    
+    let message = "📦 *Yangi Buyurtma!*\n\n";
     let total = 0;
-    cart.forEach(item => {
-        message += `• ${item.title}: ${item.qty} шт. (${item.price * item.qty} сум)\n`;
+    
+    cart.forEach((item, index) => {
+        message += `${index + 1}. *${item.title}*\n`;
+        message += `   ${item.qty} шт. x ${item.price.toLocaleString()} = ${(item.price * item.qty).toLocaleString()} sum\n`;
         total += item.price * item.qty;
     });
-    message += `\nJami: ${total.toLocaleString()} сум`;
+    
+    message += `\n💰 *Jami summa:* ${total.toLocaleString()} sum`;
     
     const url = `https://t.me/sweet_toys_uz?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
-</script>
-</body>
+
+// Закрытие модального окна фото при клике на фон
+window.onclick = function(event) {
+    const modal = document.getElementById("myModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script> 
+</body> 
 </html>
