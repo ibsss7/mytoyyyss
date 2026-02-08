@@ -37,17 +37,18 @@
                 </ul>
 
                 <div class="qty-control">
-                    <button class="qty-btn" onclick="updateQty(this, -1, 120000)">−</button>
+                    <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
                     <span id="qty-val">1</span>
-                    <button class="qty-btn" onclick="updateQty(this, 1, 120000)">+</button>
+                    <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
                 </div>
 
-                <div class="price"><span class="total-price">120 000</span> сум</div>
+                <div class="price"><span class="total-price">1 000</span> сум</div>
                 
                 <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">V korzinu</a>
             </div>
         </div>
-        </div>
+
+    </div>
 </div>
 
 <footer>
@@ -84,29 +85,24 @@
 </div>
 
 <script>
-    // Смена картинки при клике на миниатюру
     function changeImg(smallImg) {
         const fullImg = smallImg.parentElement.parentElement.querySelector(".main-img");
         fullImg.src = smallImg.src;
     }
 
-    // Открытие модалки фото
     function openModal(src) {
         document.getElementById("myModal").style.display = "flex";
         document.getElementById("imgFull").src = src;
     }
 
-    // Закрытие модалки фото
     function closeModal() {
         document.getElementById("myModal").style.display = "none";
     }
 
-    // Закрытие при клике вне картинки
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal")) { closeModal(); }
     }
 
-    // ФУНКЦИЯ РАСЧЕТА ЦЕНЫ И КОЛИЧЕСТВА
     function updateQty(btn, change, unitPrice) {
         const qtyElement = btn.parentElement.querySelector('#qty-val');
         const priceSpan = btn.closest('.product-info').querySelector('.total-price');
@@ -119,7 +115,7 @@
         qtyElement.innerText = currentQty;
         
         let total = currentQty * unitPrice;
-        // Форматируем число с пробелами (например 120 000)
+        // Форматирование: 1000 превратится в "1 000"
         priceSpan.innerText = total.toLocaleString('ru-RU').replace(',', ' ');
     }
 </script>
