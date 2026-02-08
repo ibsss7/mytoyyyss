@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sweet Toys — Магазин оригинальных игрушек</title>
+    <title>Sweet Toys — Online Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
 
         <div class="product-card">
             <div class="image-box">
-                <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)" alt="Игрушка">
+                <img src="photosss/toy1/toy1_1.jpg" class="main-img" onclick="openModal(this.src)">
                 <div class="thumbnails">
                     <img src="photosss/toy1/toy1_1.jpg" onclick="changeImg(this)">
                     <img src="photosss/toy1/toy1_2.jpg" onclick="changeImg(this)">
@@ -28,43 +28,53 @@
             </div>
             <div class="product-info">
                 <h3 class="product-title">Gonchik moshina</h3>
-                
                 <ul class="product-features">
-                    <li><span>Yosh:</span> 3 yoshdan kattalar uchun</li>
-                    <li><span>Ranglari:</span> har xil</li>
-                    <li><span>Material:</span> Xavfsiz plastik</li>
-                    <li><span>Og'irligi:</span> 50 gram</li>
+                    <li>Yosh: 3 yoshdan kattalar uchun</li>
+                    <li>Ranglari: har xil</li>
+                    <li>Material: Xavfsiz plastik</li>
                 </ul>
 
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
-                    <span class="qty-val">1</span>
-                    <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
+                <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+
+                <div class="qty-box" style="display: none;">
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
+                        <span class="qty-val">1</span>
+                        <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
+                    </div>
+                    <div class="price"><span class="total-price">1 000</span> сум</div>
+                    <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn cart-btn">V korzinu</a>
                 </div>
-
-                <div class="price"><span class="total-price">1 000</span> сум</div>
-                
-                <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn">Zakazat v Telegram</a>
             </div>
         </div>
-        </div>
-</div>
 
-<footer>
-    <div class="footer-container">
-        <div class="footer-brand">
-            <div class="footer-logo">Sweet Toys</div>
-            <p>Ваш надежный магазин мягких радостей в Узбекистане.</p>
-        </div>
-        <div class="footer-info">
-            <h4>Связаться с нами</h4>
-            <div class="footer-socials">
-                <a href="https://t.me/sweet_toys_uz" target="_blank" class="footer-item">✈️ @sweet_toys_uz</a>
-                <a href="tel:+998909088824" class="footer-item">📞 +998 90 908-88-24</a>
+        <div class="product-card">
+            <div class="image-box">
+                <img src="photosss/toy2/toy2_1.jpg" class="main-img" onclick="openModal(this.src)">
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Mishka Teddy</h3>
+                <ul class="product-features">
+                    <li>Yosh: 0+</li>
+                    <li>Material: Yumshoq mato</li>
+                </ul>
+
+                <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+
+                <div class="qty-box" style="display: none;">
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="updateQty(this, -1, 5000)">−</button>
+                        <span class="qty-val">1</span>
+                        <button class="qty-btn" onclick="updateQty(this, 1, 5000)">+</button>
+                    </div>
+                    <div class="price"><span class="total-price">5 000</span> сум</div>
+                    <a href="https://t.me/sweet_toys_uz" target="_blank" class="buy-btn cart-btn">V korzinu</a>
+                </div>
             </div>
         </div>
+
     </div>
-</footer>
+</div>
 
 <div id="myModal" class="modal">
     <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -73,7 +83,7 @@
 
 <script>
     function changeImg(smallImg) {
-        const fullImg = smallImg.parentElement.parentElement.querySelector(".main-img");
+        const fullImg = smallImg.closest('.image-box').querySelector(".main-img");
         fullImg.src = smallImg.src;
     }
 
@@ -86,21 +96,26 @@
         document.getElementById("myModal").style.display = "none";
     }
 
+    function showQty(btn) {
+        btn.style.display = 'none';
+        btn.parentElement.querySelector('.qty-box').style.display = 'block';
+    }
+
     function updateQty(btn, change, unitPrice) {
-        const qtySpan = btn.parentElement.querySelector('.qty-val');
-        const priceSpan = btn.closest('.product-info').querySelector('.total-price');
-        let currentQty = parseInt(qtySpan.innerText);
-        currentQty += change;
-        if (currentQty < 1) currentQty = 1;
-        qtySpan.innerText = currentQty;
-        let total = currentQty * unitPrice;
-        priceSpan.innerText = total.toLocaleString('ru-RU').replace(',', ' ');
+        const info = btn.closest('.product-info');
+        const qtySpan = info.querySelector('.qty-val');
+        const priceSpan = info.querySelector('.total-price');
+        
+        let qty = parseInt(qtySpan.innerText) + change;
+        if (qty < 1) qty = 1;
+        
+        qtySpan.innerText = qty;
+        priceSpan.innerText = (qty * unitPrice).toLocaleString('ru-RU').replace(',', ' ');
     }
 
     window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal")) { closeModal(); }
+        if (event.target == document.getElementById("myModal")) closeModal();
     }
 </script>
-
 </body>
 </html>
