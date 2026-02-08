@@ -213,3 +213,30 @@ footer {
     .main-img { height: 180px; }
     .product-title { font-size: 1rem; }
 }
+    /* Убираем точки и приближаем текст */
+.product-features {
+    list-style: none;
+    padding-left: 0;
+}
+.product-features li::before {
+    content: "•";
+    color: var(--main-green);
+    margin-right: 8px; /* Точка вплотную к тексту */
+}
+
+/* Окно товара как в Uzum */
+.product-view {
+    background: white;
+    width: 95%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+@media (max-width: 600px) {
+    .modal-grid { grid-template-columns: 1fr; }
+}
