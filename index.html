@@ -189,11 +189,21 @@ function toggleCart() {
 }
     
 // 4. Добавление товара в корзину
-    function addToCart(title, unitPrice, btn) {
+function addToCart(title, unitPrice, btn) {
     const info = btn.closest('.product-info');
-    const input = info.querySelector('.qty-input'); // Ищем инпут
-    const qty = parseInt(input.value); // Берем значение
     
+    // Ищем именно наш новый input
+    const input = info.querySelector('.qty-input');
+    
+    // Если вдруг инпута нет (защита от ошибок), берем 1, иначе берем число из поля
+    const qty = input ? parseInt(input.value) : 1;
+    
+    // Проверка на корректность числа
+    if (isNaN(qty) || qty < 1) {
+        return alert("Iltimos, miqdorni to'g'ri kiriting!");
+    }
+
+    // Ищем, есть ли товар уже в корзине
     let existingItem = cart.find(item => item.title === title);
     
     if (existingItem) {
@@ -202,6 +212,7 @@ function toggleCart() {
         cart.push({ title: title, price: unitPrice, qty: qty });
     }
     
+    // Обновляем саму корзину и показываем уведомление
     updateCartDisplay();
     alert(title + " savatchaga qo'shildi!");
 }
