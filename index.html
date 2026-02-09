@@ -148,60 +148,75 @@
         document.getElementById("myModal").style.display = "none";
     }
 
-    function showQty(btn) {
-        btn.style.display = 'none';
-        btn.parentElement.querySelector('.qty-box').style.display = 'block';
-    }
-
-    function updateQty(btn, change, unitPrice) {
-        const info = btn.closest('.product-info');
-        const qtySpan = info.querySelector('.qty-val');
-        const priceSpan = info.querySelector('.total-price');
-        
-        let qty = parseInt(qtySpan.innerText) + change;
-        if (qty < 1) qty = 1;
-        
-        qtySpan.innerText = qty;
-        priceSpan.innerText = (qty * unitPrice).toLocaleString('ru-RU').replace(',', ' ');
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal")) closeModal();
-    }
-   // Глобальный массив для хранения товаров
-let cart = [];
-
-// 1. Показать выбор количества
+    // 1. Показать выбор количества
 function showQty(btn) {
     btn.style.display = 'none';
     btn.parentElement.querySelector('.qty-box').style.display = 'block';
 }
 
-// 2. Универсальный калькулятор цены (+ / -)
+// 2. Универсальный калькулятор (+ / -)
 function updateQty(btn, change, unitPrice) {
     const info = btn.closest('.product-info');
-    const qtySpan = info.querySelector('.qty-val');
+    const input = info.querySelector('.qty-input'); 
+    
+    let qty = parseInt(input.value) + change;
+    if (qty < 1) qty = 1;
+    
+    input.value = qty;
+    updateTotalPrice(info, qty, unitPrice);
+}
+
+// 3. Ручной ввод
+function manualQty(input, unitPrice) {
+    let qty = parseInt(input.value);
+    if (isNaN(qty) || qty < 1) {
+        qty = 1;
+        input.value = 1;
+    }
+    const info = input.closest('.product-info');
+    updateTotalPrice(info, qty, unitPrice);
+}
+
+// Вспомогательная функция для обновления текста цены
+function updateTotalPrice(info, qty, unitPrice) {
     const priceSpan = info.querySelector('.total-price');
-    
-    let qty = parseInt(qtySpan.innerText) + change;
-    if (qty < 1) qty = 1; // Минимум 1 штука
-    
-    qtySpan.innerText = qty;
     priceSpan.innerText = (qty * unitPrice).toLocaleString('ru-RU').replace(',', ' ');
 }
 
+// 4. Добавление в корзину
+function addToCart(title, unitPrice, btn) {
+    const info = btn.closest('.product-info');
+    const input = info.querySelector('.qty-input');
+    const qty = parseInt(input.value);
+    
+    let existingItem = cart.find(item => item.title === title);
+    
+    if (existingItem) {
+        existingItem.qty += qty;
+    } else {
+        cart.push({ title: title, price: unitPrice, qty: qty });
+    }
+    
+    updateCartDisplay();
+    alert(title + " savatchaga qo'shildi!");
+}
 // 3. Открытие и закрытие боковой панели корзины
 function toggleCart() {
     const modal = document.getElementById('cart-modal');
     modal.classList.toggle('active');
 }
-
+    
 // 4. Добавление товара в корзину
 function addToCart(title, unitPrice, btn) {
     const info = btn.closest('.product-info');
-    const qty = parseInt(info.querySelector('.qty-val').innerText);
+    const input = info.querySelector('.qty-input');
     
-    // Проверяем, есть ли такой товар уже в корзине
+    // Берем число напрямую из поля ввода (value)
+    const qty = parseInt(input.value);
+    
+    // Проверка, чтобы не добавить пустоту или 0
+    if (isNaN(qty) || qty < 1) return alert("Miqdorni to'g'ri kiriting!");
+
     let existingItem = cart.find(item => item.title === title);
     
     if (existingItem) {
