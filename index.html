@@ -53,10 +53,10 @@
 
                 <div class="qty-box" style="display: none;">
                     <div class="qty-control">
-                        <button class="qty-btn" onclick="updateQty(this, -1, 1200)">−</button>
-                        <span class="qty-val">1</span>
-                        <button class="qty-btn" onclick="updateQty(this, 1, 1200)">+</button>
-                    </div>
+                        <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
+                        <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 1000)">
+                        <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
+                </div>
                     <div class="price"><span class="total-price">1 000</span> сум</div>
         <button class="buy-btn cart-btn" onclick="addToCart('Gonchik moshina', 1200, this)">Savatga qoshish</button>
                 </div>
@@ -85,11 +85,11 @@
         <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
         
         <div class="qty-box" style="display: none;">
-            <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
-            </div>
+        <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(this, -1, 1000)">−</button>
+            <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 1000)">
+            <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
+        </div>
             <div class="price"><span class="total-price">1000</span> сум</div>
             <button class="buy-btn cart-btn" onclick="addToCart('Kemacha', 1000, this)">Savatga qoshish</button>
         </div>
@@ -118,12 +118,12 @@
         
         <div class="qty-box" style="display: none;">
             <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty(this, -1, 1200)">−</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="updateQty(this, 1, 1200)">+</button>
-            </div>
+            <button class="qty-btn" onclick="updateQty(this, -1, 1200)">−</button>
+            <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 1200)">
+            <button class="qty-btn" onclick="updateQty(this, 1, 1200)">+</button>
+        </div>
             <div class="price"><span class="total-price">1200</span> сум</div>
-            <button class="buy-btn cart-btn" onclick="addToCart('Kemacha', 1200, this)">Savatga qoshish</button>
+            <button class="buy-btn cart-btn" onclick="addToCart('Police moshina', 1200, this)">Savatga qoshish</button>
         </div>
     </div>
 </div>
@@ -155,30 +155,30 @@ function showQty(btn) {
 }
 
 // 2. Универсальный калькулятор (+ / -)
+// Функция для кнопок Плюс и Минус
 function updateQty(btn, change, unitPrice) {
     const info = btn.closest('.product-info');
-    const input = info.querySelector('.qty-input'); 
+    const input = info.querySelector('.qty-input');
     
     let qty = parseInt(input.value) + change;
-    if (qty < 1) qty = 1;
+    if (qty < 1) qty = 1; // Не даем уйти в минус
     
     input.value = qty;
-    updateTotalPrice(info, qty, unitPrice);
+    
+    // Обновляем текст цены под кнопками
+    const priceSpan = info.querySelector('.total-price');
+    priceSpan.innerText = (qty * unitPrice).toLocaleString('ru-RU').replace(',', ' ');
 }
 
-// 3. Ручной ввод
+// Функция для ввода числа руками
 function manualQty(input, unitPrice) {
     let qty = parseInt(input.value);
+    
     if (isNaN(qty) || qty < 1) {
         qty = 1;
-        input.value = 1;
     }
+    
     const info = input.closest('.product-info');
-    updateTotalPrice(info, qty, unitPrice);
-}
-
-// Вспомогательная функция для обновления текста цены
-function updateTotalPrice(info, qty, unitPrice) {
     const priceSpan = info.querySelector('.total-price');
     priceSpan.innerText = (qty * unitPrice).toLocaleString('ru-RU').replace(',', ' ');
 }
