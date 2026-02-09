@@ -207,16 +207,11 @@ function toggleCart() {
 }
     
 // 4. Добавление товара в корзину
-function addToCart(title, unitPrice, btn) {
+    function addToCart(title, unitPrice, btn) {
     const info = btn.closest('.product-info');
-    const input = info.querySelector('.qty-input');
+    const input = info.querySelector('.qty-input'); // Ищем инпут
+    const qty = parseInt(input.value); // Берем значение
     
-    // Берем число напрямую из поля ввода (value)
-    const qty = parseInt(input.value);
-    
-    // Проверка, чтобы не добавить пустоту или 0
-    if (isNaN(qty) || qty < 1) return alert("Miqdorni to'g'ri kiriting!");
-
     let existingItem = cart.find(item => item.title === title);
     
     if (existingItem) {
