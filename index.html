@@ -58,38 +58,41 @@
                         <button class="qty-btn" onclick="updateQty(this, 1, 1000)">+</button>
                     </div>
                     <div class="price"><span class="total-price">1 000</span> сум</div>
-        <button class="buy-btn cart-btn" onclick="addToCart('Gonchik moshina', 1000, this)">V korzinu</button>
+        <button class="buy-btn cart-btn" onclick="addToCart('Gonchik moshina', 1000, this)">Savatga qoshish</button>
                 </div>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="image-box">
-                <img src="photosss/toy2/toy2_1.jpg" class="main-img" onclick="openModal(this.src)">
-                 <img src="photosss/toy2/toy2_2.jpg" class="main-img" onclick="openModal(this.src)">
-                 <img src="photosss/toy2/toy2_3.jpg" class="main-img" onclick="openModal(this.src)">
-                 <img src="photosss/toy2/toy2_4.jpg" class="main-img" onclick="openModal(this.src)">
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Kemacha</h3>
-                <ul class="product-features">
-                    <li>3 yoshdan kattalar uchun+</li>
-                    <li>Ranglari : har xil </li>
-                    <li>Material : Xavfsiz plastik </li>
-                </ul>
-                <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
-                <div class="qty-box" style="display: none;">
-                    <div class="qty-control">
-                        <button class="qty-btn" onclick="updateQty(this, -1, 5000)">−</button>
-                        <span class="qty-val">1</span>
-                        <button class="qty-btn" onclick="updateQty(this, 1, 5000)">+</button>
-                    </div>
-                    <div class="price"><span class="total-price">5 000</span> сум</div>
-                    <button class="buy-btn cart-btn" onclick="addToCart('Mishka Teddy', 1000, this)">V korzinu</button>
-                </div>
-            </div>
+    <div class="image-box">
+        <img src="photosss/toy2/toy2_1.jpg" class="main-img" onclick="openModal(this.src)">
+        
+        <div class="thumbnails">
+            <img src="photosss/toy2/toy2_1.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy2/toy2_2.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy2/toy2_3.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy2/toy2_4.jpg" onclick="changeImg(this)">
         </div>
-
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">Kemacha</h3>
+        <ul class="product-features">
+            <li>3 yoshdan kattalar uchun+</li>
+            <li>Ranglari : har xil </li>
+            <li>Material : Xavfsiz plastik </li>
+        </ul>
+        
+        <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+        
+        <div class="qty-box" style="display: none;">
+            <div class="qty-control">
+                <button class="qty-btn" onclick="updateQty(this, -1, 5000)">−</button>
+                <span class="qty-val">1</span>
+                <button class="qty-btn" onclick="updateQty(this, 1, 5000)">+</button>
+            </div>
+            <div class="price"><span class="total-price">5 000</span> сум</div>
+            <button class="buy-btn cart-btn" onclick="addToCart('Kemacha', 5000, this)">Savatga qoshish</button>
+        </div>
     </div>
 </div>
 
