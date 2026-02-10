@@ -223,6 +223,69 @@
         </div>
     </div>
 </div>
+         <div class="product-card">
+    <div class="image-box">
+        <img src="photosss/toy7/toy7_1.jpg" class="main-img" onclick="openModal(this.src)">
+        
+        <div class="thumbnails">
+            <img src="photosss/toy7/toy7_1.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy7/toy7_2.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy7/toy7_3.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy7/toy7_4.jpg" onclick="changeImg(this)">
+        </div>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">Kichkina kuchukcha</h3>
+        <ul class="product-features">
+            <li>3 yoshdan kattalar uchun+</li>
+            <li>Ranglari : har xil </li>
+            <li>Material : Xavfsiz plastik </li>
+        </ul>
+        
+        <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+        
+        <div class="qty-box" style="display: none;">
+            <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(this, -1, 700)">−</button>
+            <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 700)">
+            <button class="qty-btn" onclick="updateQty(this, 1, 700)">+</button>
+        </div>
+            <div class="price"><span class="total-price">700</span> сум</div>
+            <button class="buy-btn cart-btn" onclick="addToCart('Police moshina', 700, this)">Savatga qoshish</button>
+        </div>
+    </div>
+</div>
+         <div class="product-card">
+    <div class="image-box">
+        <img src="photosss/toy8/toy8_1.jpg" class="main-img" onclick="openModal(this.src)">
+        
+        <div class="thumbnails">
+            <img src="photosss/toy8/toy8_1.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy8/toy8_2.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy8/toy8_3.jpg" onclick="changeImg(this)">
+        </div>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">Soldat va kema</h3>
+        <ul class="product-features">
+            <li>3 yoshdan kattalar uchun+</li>
+            <li>Ranglari : har xil </li>
+            <li>Material : Xavfsiz plastik </li>
+        </ul>
+        
+        <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+        
+        <div class="qty-box" style="display: none;">
+            <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(this, -1, 800)">−</button>
+            <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 800)">
+            <button class="qty-btn" onclick="updateQty(this, 1, 800)">+</button>
+        </div>
+            <div class="price"><span class="total-price">800</span> сум</div>
+            <button class="buy-btn cart-btn" onclick="addToCart('Police moshina', 800, this)">Savatga qoshish</button>
+        </div>
+    </div>
+</div>
 
 <div id="myModal" class="modal">
     <span class="close-modal" onclick="closeModal()">&times;</span>
