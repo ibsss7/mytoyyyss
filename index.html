@@ -6,6 +6,40 @@
     <title>Sweet Toys — Online Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
+      <footer class="modern-footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>Sweet Toys</h2>
+      <p>Bolalar uchun sifatli va xavfsiz o‘yinchoqlar</p>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Biz bilan bog‘lanish</h4>
+      
+      <p class="contact-item">
+        📞 +998 90 908 88 24
+      </p>
+      
+      <p class="contact-item">
+        📞 +998 95 133 88 24
+      </p>
+
+      <a href="https://t.me/sweet_toys_uz" target="_blank" class="telegram-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+          <path d="M9.04 15.47l-.39 4.33c.56 0 .8-.24 1.09-.53l2.63-2.5 5.46 3.99c1 .55 1.72.26 1.97-.92l3.57-16.73c.32-1.5-.54-2.09-1.52-1.72L1.36 9.58c-1.46.57-1.44 1.38-.25 1.75l5.24 1.64L18.62 5.8c.58-.38 1.1-.17.67.21"/>
+        </svg>
+        @sweet_toys_uz
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Sweet Toys | Barcha huquqlar himoyalangan
+  </div>
+</footer>
 <body>
 <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
@@ -420,6 +454,84 @@
         </div>
     </div1
 </div>
+        <div class="product-card">
+    <div class="image-box">
+        <img src="photosss/toy13/toy13_1.jpg" class="main-img" onclick="openModal(this.src)">
+        
+        <div class="thumbnails">
+            <img src="photosss/toy13/toy13_1.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy13/toy13_2.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy13/toy13_3.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy13/toy13_4.jpg" onclick="changeImg(this)">
+        </div>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">Motosikl</h3>
+        <ul class="product-features">
+            <li>3 yoshdan kattalar uchun+</li>
+               <li>
+                 Ranglari: 
+                    <span class="color-circle" style="background: #ff0000;"></span>
+                    <span class="color-circle" style="background: #0000ff;"></span>
+                    <span class="color-circle" style="background: #00ff00;"></span>
+                    <span class="color-circle" style="background: #ffff00;"></span> <!-- Yellow -->
+                    <span class="color-circle" style="background: #ffffff; border: 1px solid #ccc;"></span> <!-- White -->
+                </li>
+            <li>Material : Xavfsiz plastik </li>
+        </ul>
+        
+        <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+        
+        <div class="qty-box" style="display: none;">
+            <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(this, -1, 1100)">−</button>
+            <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 1100)">
+            <button class="qty-btn" onclick="updateQty(this, 1, 1100)">+</button>
+        </div>
+            <div class="price"><span class="total-price">1100</span> сум</div>
+            <button class="buy-btn cart-btn" onclick="addToCart('Police moshina', 1100, this)">Savatga qoshish</button>
+        </div>
+    </div1
+</div>
+         <div class="product-card">
+    <div class="image-box">
+        <img src="photosss/toy14/toy14_1.jpg" class="main-img" onclick="openModal(this.src)">
+        
+        <div class="thumbnails">
+            <img src="photosss/toy14/toy14_1.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy14/toy14_2.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy14/toy14_3.jpg" onclick="changeImg(this)">
+            <img src="photosss/toy14/toy14_4.jpg" onclick="changeImg(this)">
+        </div>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">Motosikl</h3>
+        <ul class="product-features">
+            <li>3 yoshdan kattalar uchun+</li>
+               <li>
+                 Ranglari: 
+                    <span class="color-circle" style="background: #ff0000;"></span>
+                    <span class="color-circle" style="background: #0000ff;"></span>
+                    <span class="color-circle" style="background: #00ff00;"></span>
+                    <span class="color-circle" style="background: #ffff00;"></span> <!-- Yellow -->
+                    <span class="color-circle" style="background: #ffffff; border: 1px solid #ccc;"></span> <!-- White -->
+                </li>
+            <li>Material : Xavfsiz plastik </li>
+        </ul>
+        
+        <button class="buy-btn select-btn" onclick="showQty(this)">Miqdorni tanlang</button>
+        
+        <div class="qty-box" style="display: none;">
+            <div class="qty-control">
+            <button class="qty-btn" onclick="updateQty(this, -1, 1100)">−</button>
+            <input type="number" class="qty-input" value="1" min="1" oninput="manualQty(this, 1100)">
+            <button class="qty-btn" onclick="updateQty(this, 1, 1100)">+</button>
+        </div>
+            <div class="price"><span class="total-price">1100</span> сум</div>
+            <button class="buy-btn cart-btn" onclick="addToCart('Police moshina', 1100, this)">Savatga qoshish</button>
+        </div>
+    </div1
+</div>
 <div id="myModal" class="modal">
     <span class="close-modal" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="imgFull">
@@ -570,39 +682,5 @@ window.onclick = function(event) {
     }
 }
 </script> 
-         <footer class="modern-footer">
-  <div class="footer-container">
-
-    <div class="footer-brand">
-      <h2>Sweet Toys</h2>
-      <p>Bolalar uchun sifatli va xavfsiz o‘yinchoqlar</p>
-    </div>
-
-    <div class="footer-contact">
-      <h4>Biz bilan bog‘lanish</h4>
-      
-      <p class="contact-item">
-        📞 +998 90 908 88 24
-      </p>
-      
-      <p class="contact-item">
-        📞 +998 95 133 88 24
-      </p>
-
-      <a href="https://t.me/sweet_toys_uz" target="_blank" class="telegram-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
-          <path d="M9.04 15.47l-.39 4.33c.56 0 .8-.24 1.09-.53l2.63-2.5 5.46 3.99c1 .55 1.72.26 1.97-.92l3.57-16.73c.32-1.5-.54-2.09-1.52-1.72L1.36 9.58c-1.46.57-1.44 1.38-.25 1.75l5.24 1.64L18.62 5.8c.58-.38 1.1-.17.67.21"/>
-        </svg>
-        @sweet_toys_uz
-      </a>
-
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 Sweet Toys | Barcha huquqlar himoyalangan
-  </div>
-</footer>
 </body> 
 </html>
