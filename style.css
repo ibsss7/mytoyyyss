@@ -251,3 +251,17 @@ header {
     background-color: #e0e0e0;
     transform: scale(0.95); /* Эффект нажатия */
 }
+.color-wrapper {
+    display: inline-flex;
+    margin-left: 10px;
+    vertical-align: middle;
+    gap: 5px;
+}
+
+.swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1); /* Keeps light colors visible */
+    display: inline-block;
+}
