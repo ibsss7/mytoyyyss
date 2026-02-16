@@ -269,3 +269,82 @@ header {
     border: 1px solid #ccc; /* Makes light colors visible */
     vertical-align: middle;
 }
+.modern-footer {
+  background: linear-gradient(135deg, #4CAF50, #2ecc71);
+  color: white;
+  padding-top: 50px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-brand h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.footer-brand p {
+  opacity: 0.9;
+  max-width: 300px;
+}
+
+.footer-contact h4 {
+  margin-bottom: 15px;
+}
+
+.contact-item {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.telegram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px 18px;
+  background-color: #0088cc;
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.telegram-btn:hover {
+  background-color: #0077b5;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+  .telegram-btn {
+    justify-content: center;
+  }
+}
+
